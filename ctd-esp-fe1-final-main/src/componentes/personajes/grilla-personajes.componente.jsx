@@ -1,7 +1,8 @@
-import { useEffect } from "react";
-import { loadPersonaje } from "../../actions/personajesActions";
+import { useEffect, useState } from "react";
+import { addFavorite, deleteFavorite, loadFavorites } from "../../actions/favoritosActions";
+import { ErrorPersonaje, loadPersonaje } from "../../actions/personajesActions";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getPersonajes } from "../../services";
+import { getPersonajes} from "../../services";
 import store from "../../store/store";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
@@ -15,38 +16,42 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
  * @returns un JSX element
  */
 const GrillaPersonajes = () => {
-  const personajes = useAppSelector((state) => state.personajes.results);
-  
-
+  const personajes = useAppSelector((state) => state.personajes);
   const dispatch = useAppDispatch();
-
+  
   console.log("personajes: ", personajes);
 
   useEffect(() => {
-    getPersonajes().then((personajes) => {
-      dispatch(loadPersonaje(personajes));
-    });
+      getPersonajes(0).then((personajes) => {
+        dispatch(loadPersonaje(personajes));
+      }).catch(() => {
+        ErrorPersonaje("No se encontró ningun personaje");
+      });
   }, [dispatch]);
-
-  console.log("funcion traer personajes: ", loadPersonaje(personajes).cards);
-
+  
   const buscadorPersonajes = () => {
-    if (personajes?.length === 0 || personajes === undefined) {
+    if (personajes.loading === true) {
       return (
-        <>
+        <>        
           <p>Cargando...</p>
         </>
       );
     } else {
       return (
-        <div className="grilla-personajes">
-          {personajes.map((personaje) => (
-            <TarjetaPersonaje            
-              key={personaje.id}
+        <div className="grilla-personajes">          
+          {personajes.personajes.length === 0
+          ? 
+          <p>{personajes.error}</p>
+          :
+          personajes?.personajes.map((personaje) => (
+            <>
+            <TarjetaPersonaje
+              key={personaje.id} 
               imagen={personaje.image}
               alt={personaje.name}
               nombre={personaje.name}
             />
+            </>
           ))} 
         </div>
       );

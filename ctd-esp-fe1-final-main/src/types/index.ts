@@ -1,9 +1,28 @@
-export interface ICard {
+export interface ICardFavorite {
     id: number;
     favorite: boolean;    
   }
 
-  export type CardContextType = {
-    cards: ICard[];
-    saveTodo: (card: ICard) => void;
+  export interface ListFavorite {
+    cards: ICardFavorite[];
   };
+
+  export interface AxiosPersonajeResponse{
+    count: number;
+    pages: number;
+    next:number;
+    prev:null | number;
+    results:SmallPersonaje[];
+  }
+
+  export interface SmallPersonaje{
+    name:string;
+    url:string;
+  }
+
+  export interface Personaje{
+    name:string;
+    image: string;
+    id:string;
+    favorite:boolean;
+  }
