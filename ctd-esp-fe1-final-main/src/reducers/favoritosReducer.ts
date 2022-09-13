@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
-import { Personaje } from "../types"; 
+import { ICardFavorite } from "../types"; 
 import { AddFavoriteAction, DeleteFavoriteAction, LoadFavoriteAction } from "../actions/favoritosActions";
 import { castDraft } from "immer";
 
-export type FavoriteState = Personaje[];
+export type FavoriteState = ICardFavorite[];
 
 const initialState: FavoriteState = [];
 
@@ -15,7 +15,7 @@ FavoriteState,
     case "ADD_FAVORITE": {
       return [
         ...state,
-        { name:action.name, favorite: true, id: action.id, image:action.image }
+        { favorite: true, id: action.id, }
       ];
     }
     case "LOAD_FAVORITES": {

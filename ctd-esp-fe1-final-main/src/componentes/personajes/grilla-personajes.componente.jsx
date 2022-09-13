@@ -39,14 +39,15 @@ const GrillaPersonajes = () => {
     } else {
       return (
         <div className="grilla-personajes">          
-          {personajes.personajes.length === 0
-          ? 
+          {personajes.personajes.length === 0 &&
           <p>{personajes.error}</p>
-          :
+    }
+    {
           personajes?.personajes.map((personaje) => (
             <>
             <TarjetaPersonaje
-              key={personaje.id} 
+              key={personaje.id}
+              id={personaje.id} 
               imagen={personaje.image}
               alt={personaje.name}
               nombre={personaje.name}

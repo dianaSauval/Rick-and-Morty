@@ -14,6 +14,11 @@ export interface ErrorPersonajesAction extends Action {
   payload: string;
 }
 
+export interface BuscarPersonajeAction extends Action{
+  type:"BUSCAR_PERSONAJE",
+  name: string
+}
+
 export const RequestPersonaje: ActionCreator<FetchPersonajesRequestAction> = () => {
   return {
     type: "FETCH_PERSONAJES_REQUEST"
@@ -33,4 +38,11 @@ export const ErrorPersonaje: ActionCreator<ErrorPersonajesAction> = (payload:str
     payload,
   };
 };
+
+export const buscarPersonaje:ActionCreator<BuscarPersonajeAction>= (name:string) =>{
+  return{
+    type: "BUSCAR_PERSONAJE",
+    name
+  }
+}
 

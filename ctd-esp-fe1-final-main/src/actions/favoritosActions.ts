@@ -5,8 +5,6 @@ export interface AddFavoriteAction extends Action {
   type: "ADD_FAVORITE";
   id: string;
   favorite: boolean;
-  name: string;
-  image: string;
 }
 
 export interface LoadFavoriteAction extends Action {
@@ -20,12 +18,10 @@ export interface DeleteFavoriteAction extends Action {
   favorite: boolean;
 }
 
-export const addFavorite: ActionCreator<AddFavoriteAction> = (id: string, name: string, image: string) => {
+export const addFavorite: ActionCreator<AddFavoriteAction> = (id: string) => {
   return {
     type: "ADD_FAVORITE",
     id,
-    name, 
-    image,
     favorite: true,
   };
 };

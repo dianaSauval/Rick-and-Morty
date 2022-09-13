@@ -1,22 +1,24 @@
 import { Reducer } from "redux";
 import { Personaje } from "../types"; 
-import { ErrorPersonajesAction, FetchPersonajesRequestAction, LoadPersonajesAction } from "../actions/personajesActions"; 
+import { BuscarPersonajeAction,ErrorPersonajesAction, FetchPersonajesRequestAction, LoadPersonajesAction } from "../actions/personajesActions"; 
 
 export type PersonajeState = {
   loading: boolean
   personajes: Personaje[];
-  error: string
+  error: string;
+  busqueda:string
 }
 
 const initialState: PersonajeState = {
   loading: false,
   personajes: [],
-  error: ""
+  error: "",
+  busqueda:""
 };
 
 const PersonajeReducer: Reducer<
 PersonajeState, 
-FetchPersonajesRequestAction | LoadPersonajesAction | ErrorPersonajesAction 
+FetchPersonajesRequestAction | LoadPersonajesAction | ErrorPersonajesAction | BuscarPersonajeAction 
 > = (state = initialState, action): PersonajeState => {
   switch (action.type) {
     case "FETCH_PERSONAJES_REQUEST": 
@@ -28,14 +30,21 @@ FetchPersonajesRequestAction | LoadPersonajesAction | ErrorPersonajesAction
       return {
         loading:false,
         personajes: action.payload,
-        error:""
+        error:"",
+        busqueda:""
     }
     case "ERROR_PERSONAJES": 
     return {
       loading:false,
       personajes: [],
-      error:action.payload
+      error:action.payload,
+      busqueda:""
   }
+  case "BUSCAR_PERSONAJE": 
+  return {
+        ... state,
+        busqueda:action.name
+}
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 export interface ICardFavorite {
-    id: number;
+    id: string;
     favorite: boolean;    
   }
 
@@ -24,5 +24,4 @@ export interface ICardFavorite {
     name:string;
     image: string;
     id:string;
-    favorite:boolean;
   }
