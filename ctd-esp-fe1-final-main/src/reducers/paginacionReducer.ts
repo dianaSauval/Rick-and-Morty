@@ -1,26 +1,23 @@
-import { Reducer } from "redux";
-import { SmallPersonaje } from "../types"; 
-import { NexPagesAction, statePagesAction, PrevPagesAction } from "../actions/paginacionActions"; 
+import { Reducer } from "redux"; 
+import { PaginacionAction } from "../actions/paginacionActions"; 
 
 export type PaginacionState = {
-    count: number;
+  count:number
     pages: number;
     next:number;
     prev:number | null;
-    results:SmallPersonaje[];
 }
 
 const initialState: PaginacionState = {
-    count: 20,
+    count: 9,
     pages: 0,
     next:1,
     prev:null,
-    results:[]
 };
 
 const PaginacionReducer: Reducer<
 PaginacionState, 
-NexPagesAction | statePagesAction | PrevPagesAction 
+PaginacionAction 
 > = (state = initialState, action): PaginacionState => {
   switch (action.type) {
     case "NEXT_PAGES": 
@@ -32,7 +29,6 @@ NexPagesAction | statePagesAction | PrevPagesAction
     case "STATE_PAGES": 
       return {
         ...state,
-        results: action.results,
         pages:action.pages,
         count:action.count
     }

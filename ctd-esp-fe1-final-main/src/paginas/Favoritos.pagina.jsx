@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
 
 /**

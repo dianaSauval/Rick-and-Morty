@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { nextPages, prevPages } from '../../actions/paginacionActions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './paginacion.css';
 
@@ -11,33 +12,25 @@ import './paginacion.css';
  * @returns un JSX element 
  */
 const Paginacion = () => {
-    //const { personajesPaginacion} = usePersonaje();
-    const personajes = useAppSelector((state) => state.personajes);
-
+    const paginacion = useAppSelector((state) => state.paginacion);
+    let pageState = paginacion.pages;
     const dispatch = useAppDispatch();
 
-    
+    console.log("paginacion: ", paginacion);
 
-/*     const personajesFiltrados = ()=>{
-        return personajes.slice(currentPage,currentPage+5);
-      }
-
-    const nextPage = () =>{
-        if(personajes.filter(personaje => personaje.name.includes(search)).length>5){
-
-            setCurrentPage(currentPage+5)
-        }
+    const handleClickPrev = () =>{
+        if(pageState === 0) return;
+        dispatch(prevPages(pageState - 1))
     }
-    const prevPage = () =>{
-        if (currentPage >0) {            
-            setCurrentPage(currentPage-5)
-        }
-    } */
+
+    const handleClickNext = () =>{
+        dispatch(nextPages(pageState + 1))
+    }
 
 
     return <div className="paginacion">
-        <button disabled={true} className={"primary"}>Anterior</button>
-        <button disabled={false} className={"primary"} /* onClick={nextPage} */>Siguiente</button>
+        <button className={"primary"} onClick={(e)=>handleClickPrev()}>Anterior</button>
+        <button className={"primary"} onClick={(e)=>handleClickNext()}>Siguiente</button>
     </div>
 }
 

@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import FavoriteReducer from "../reducers/favoritosReducer";
+import PaginacionReducer from "../reducers/paginacionReducer";
 import PersonajeReducer from "../reducers/personajesReducer";
 
 const rootReducer = combineReducers({
   favoritos: FavoriteReducer,
-  personajes: PersonajeReducer
+  personajes: PersonajeReducer,
+  paginacion: PaginacionReducer
 });
 
 const store = configureStore({

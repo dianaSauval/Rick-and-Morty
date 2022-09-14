@@ -1,29 +1,27 @@
-import { Action, ActionCreator } from "@reduxjs/toolkit";
+import { Action, ActionCreator, isAsyncThunkAction, ThunkAction } from "@reduxjs/toolkit";
+import { useAppSelector } from "../hooks";
+import { buscarPersonajeAPI, getPersonajes } from "../services";
+import { RootState } from "../store/store";
 import { Personaje } from "../types"; 
+import { statePages } from "./paginacionActions";
 
-export interface FetchPersonajesRequestAction extends Action {
-  type: "FETCH_PERSONAJES_REQUEST";
-}
 export interface LoadPersonajesAction extends Action {
   type: "LOAD_PERSONAJES";
   payload: Personaje[];
 }
-
-export interface ErrorPersonajesAction extends Action {
-  type: "ERROR_PERSONAJES";
-  payload: string;
-}
-
 export interface BuscarPersonajeAction extends Action{
   type:"BUSCAR_PERSONAJE",
   name: string
 }
+export interface BuscarPersonajeExitoAction extends Action{
+  type:"BUSCAR_PERSONAJE_EXITO",
+  personajes: Personaje[]
+}
+export interface BuscarPersonajeErrorAction extends Action{
+  type:"BUSCAR_PERSONAJE_ERROR",
+  error: string
+}
 
-export const RequestPersonaje: ActionCreator<FetchPersonajesRequestAction> = () => {
-  return {
-    type: "FETCH_PERSONAJES_REQUEST"
-  };
-};
 
 export const loadPersonaje: ActionCreator<LoadPersonajesAction> = (payload: Personaje[]) => {
   return {
@@ -32,17 +30,54 @@ export const loadPersonaje: ActionCreator<LoadPersonajesAction> = (payload: Pers
   };
 };
 
-export const ErrorPersonaje: ActionCreator<ErrorPersonajesAction> = (payload:string) => {
-  return {
-    type: "ERROR_PERSONAJES",
-    payload,
-  };
-};
 
-export const buscarPersonaje:ActionCreator<BuscarPersonajeAction>= (name:string) =>{
+export type PersonajesAction = BuscarPersonajeAction | BuscarPersonajeExitoAction | BuscarPersonajeErrorAction | LoadPersonajesAction;
+
+interface BuscarPersonajesThunkAction extends ThunkAction<void, RootState, unknown, PersonajesAction>{};
+
+const buscarPersonaje:ActionCreator<BuscarPersonajeAction>= (name:string) =>{
   return{
     type: "BUSCAR_PERSONAJE",
     name
   }
 }
+
+const buscarPersonajeExito:ActionCreator<BuscarPersonajeExitoAction>= (personajes:Personaje[]) =>{
+  return{
+    type: "BUSCAR_PERSONAJE_EXITO",
+    personajes:personajes
+  }
+}
+
+const buscarPersonajeError:ActionCreator<BuscarPersonajeErrorAction>= (error:string) =>{
+  return{
+    type: "BUSCAR_PERSONAJE_ERROR",
+    error:error
+  }
+}
+
+const MINIMUM_CHAR_TO_SEARCH = 3;
+
+
+
+export const buscarPersonajesThunk = (page:number, name:string): BuscarPersonajesThunkAction =>{
+  return async (dispatch, getState) =>{
+    
+    if (name.length < MINIMUM_CHAR_TO_SEARCH) return null;
+
+      dispatch(buscarPersonaje(name));
+    
+    try{
+      const personajes = await getPersonajes(page, name);
+      dispatch(buscarPersonajeExito(personajes));
+    }catch(e){
+      dispatch(buscarPersonajeError("Personaje no encontrado"));
+
+    }
+
+  }
+}
+
+
+
 

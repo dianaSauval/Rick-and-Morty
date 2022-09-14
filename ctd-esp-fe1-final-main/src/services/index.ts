@@ -4,8 +4,25 @@ import { AxiosPersonajeResponse, Personaje, SmallPersonaje } from "../types";
 
 const baseUrl = "https://rickandmortyapi.com/api/character/";
 
-export const getPersonajes = async (pages:number = 0): Promise<Personaje[]> => {
-  const res = await axios.get<AxiosPersonajeResponse>(`https://rickandmortyapi.com/api/character`);
+export const buscarPersonajeAPI = async (name:string = "") => {
+  const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${1}&name=${"smith"}`).then(resp => {
+
+    console.log("respuesta: ",resp.data);
+});
+};
+
+/* export const buscarPersonajeAPI = createAsyncThunk("/character", async (name:string = "") => {
+  try {
+    const response = await axios.get("https://rickandmortyapi.com/api");
+    return [...response.data]    
+  } catch (error) {
+    return error
+    
+  }
+}); */
+
+export const getPersonajes = async (pages:number = 0, name:string =""): Promise<Personaje[]> => {
+  const res = await axios.get<AxiosPersonajeResponse>(`https://rickandmortyapi.com/api/character/?page=${pages}&name=${name}`);
   const SmallPersonajeList = res.data.results;
   console.log("count: ",res.data.next);
 
