@@ -63,7 +63,7 @@ const MINIMUM_CHAR_TO_SEARCH = 3;
 export const buscarPersonajesThunk = (page:number, name:string): BuscarPersonajesThunkAction =>{
   return async (dispatch, getState) =>{
     
-    if (name.length < MINIMUM_CHAR_TO_SEARCH) return null;
+    //if (name.length < MINIMUM_CHAR_TO_SEARCH) return null;
 
       dispatch(buscarPersonaje(name));
     
