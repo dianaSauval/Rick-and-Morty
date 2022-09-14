@@ -1,6 +1,7 @@
 export interface ICardFavorite {
     id: string;
-    favorite: boolean;    
+    favorite: boolean;
+    card:Personaje    
   }
 
   export interface ListFavorite {

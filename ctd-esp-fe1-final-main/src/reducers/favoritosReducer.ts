@@ -15,7 +15,7 @@ FavoriteState,
     case "ADD_FAVORITE": {
       return [
         ...state,
-        { favorite: true, id: action.id, }
+        { favorite: true, id: action.id, card:action.card }
       ];
     }
     case "LOAD_FAVORITES": {

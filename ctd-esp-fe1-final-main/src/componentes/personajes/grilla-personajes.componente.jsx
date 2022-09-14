@@ -17,10 +17,14 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
  * @returns un JSX element
  */
  const GrillaPersonajes = () => {
+  const favoritos = useAppSelector((state) => state.favoritos);
   const paginacion = useAppSelector((state) => state.paginacion);
   const {personajes, status} = useAppSelector(state => state.personajes);
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
   console.log("personajes: ", personajes);
+  console.log("favoritos: ", favoritos);
 
   useEffect(() => {
     getPersonajes(paginacion.pages).then((personajes) => {
@@ -30,6 +34,19 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
 
   if(status === "cargando") return <div>Cargando personajes...</div>
   if (!personajes || personajes.length === 0) return <></> 
+
+  if(pathname === "/favoritos") return <div className="grilla-personajes">
+  {favoritos.map((personaje) => (
+            <>
+            <TarjetaPersonaje            
+              id={personaje.card.id} 
+              imagen={personaje.card.image}
+              alt={personaje.card.name}
+              nombre={personaje.card.name}
+            />
+            </>
+          ))} 
+    </div>
 
   return <div className="grilla-personajes">
 {personajes.map((personaje) => (

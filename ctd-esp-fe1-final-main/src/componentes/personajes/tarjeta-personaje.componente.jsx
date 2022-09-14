@@ -16,20 +16,36 @@ import './tarjeta-personaje.css';
 
 
 
-const TarjetaPersonaje = ({imagen, alt, nombre, id}) => { 
+const TarjetaPersonaje = ({imagen, alt, nombre, id}) => {
+  const personajes = useAppSelector((state) => state.personajes);
+  const favoritos = useAppSelector((state) => state.favoritos); 
     const dispatch = useAppDispatch();
       
   const [isFAvorite, setIsFAvorite] = useState(false)
 
   const handleClickFavorito = (id) =>{
+    const favorito = favoritos.find((fav)=>fav.id === id)
+    const personaje = personajes.personajes.find((per)=>per.id === id);
+
       setIsFAvorite(!isFAvorite)
-      if (!isFAvorite) {
-        dispatch(addFavorite(id));       
+
+      if (!isFAvorite && favorito === undefined) {
+        dispatch(addFavorite(id, personaje));       
         
       }else{
         dispatch(deleteFavorite(id))
       }      
-  }  
+  } 
+  
+/*   const isFavorite = (id) =>{
+    const favorito = favoritos.find((fav)=>fav.id === id)
+    if (favorito.favorite) {
+      setIsFAvorite(true)
+    }
+
+
+    return isFAvorite
+  } */
 
     return <div className="tarjeta-personaje">
         <img src={imagen} alt={alt}/>

@@ -1,10 +1,11 @@
 import { Action, ActionCreator } from "@reduxjs/toolkit";
-import { ICardFavorite } from "../types"; 
+import { ICardFavorite, Personaje } from "../types"; 
 
 export interface AddFavoriteAction extends Action {
   type: "ADD_FAVORITE";
   id: string;
   favorite: boolean;
+  card: Personaje
 }
 
 export interface LoadFavoriteAction extends Action {
@@ -18,10 +19,11 @@ export interface DeleteFavoriteAction extends Action {
   favorite: boolean;
 }
 
-export const addFavorite: ActionCreator<AddFavoriteAction> = (id: string) => {
+export const addFavorite: ActionCreator<AddFavoriteAction> = (id: string, card: Personaje) => {
   return {
     type: "ADD_FAVORITE",
     id,
+    card,
     favorite: true,
   };
 };
