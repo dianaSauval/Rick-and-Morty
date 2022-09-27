@@ -22,6 +22,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   const {personajes, status} = useAppSelector(state => state.personajes);
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  let estrellaFav = false
 
   console.log("personajes: ", personajes);
   console.log("favoritos: ", favoritos);
@@ -33,6 +34,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
 }, [dispatch, paginacion.pages]);
 
   if(status === "cargando") return <div>Cargando personajes...</div>
+  if(status === "completado_con_error") return <div>No se encontró ningún personaje...</div>
   if (!personajes || personajes.length === 0) return <></> 
 
   if(pathname === "/favoritos") return <div className="grilla-personajes">
@@ -51,7 +53,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   return <div className="grilla-personajes">
 {personajes.map((personaje) => (
           <>
-          <TarjetaPersonaje            
+          <TarjetaPersonaje                       
             id={personaje.id} 
             imagen={personaje.image}
             alt={personaje.name}

@@ -1,6 +1,6 @@
 import { Action, ActionCreator, isAsyncThunkAction, ThunkAction } from "@reduxjs/toolkit";
 import { useAppSelector } from "../hooks";
-import { buscarPersonajeAPI, getPersonajes } from "../services";
+import { getPersonajes } from "../services";
 import { RootState } from "../store/store";
 import { Personaje } from "../types"; 
 import { statePages } from "./paginacionActions";

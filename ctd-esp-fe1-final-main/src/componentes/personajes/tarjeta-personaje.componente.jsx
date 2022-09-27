@@ -20,14 +20,23 @@ const TarjetaPersonaje = ({imagen, alt, nombre, id}) => {
   const personajes = useAppSelector((state) => state.personajes);
   const favoritos = useAppSelector((state) => state.favoritos); 
     const dispatch = useAppDispatch();
+    const { pathname } = useLocation();
       
   const [isFAvorite, setIsFAvorite] = useState(false)
+  
+  useEffect(() => {
+    if (pathname === "/favoritos") {
+      setIsFAvorite(true)    
+    }
+}, [favoritos]);
+
 
   const handleClickFavorito = (id) =>{
     const favorito = favoritos.find((fav)=>fav.id === id)
-    const personaje = personajes.personajes.find((per)=>per.id === id);
+    const personaje = personajes.personajes.find((per)=>per.id === id);      
 
       setIsFAvorite(!isFAvorite)
+
 
       if (!isFAvorite && favorito === undefined) {
         dispatch(addFavorite(id, personaje));       

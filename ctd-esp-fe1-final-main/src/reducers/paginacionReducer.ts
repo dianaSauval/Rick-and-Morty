@@ -10,8 +10,8 @@ export type PaginacionState = {
 
 const initialState: PaginacionState = {
     count: 9,
-    pages: 0,
-    next:1,
+    pages: 1,
+    next:2,
     prev:null,
 };
 
