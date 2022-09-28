@@ -16,7 +16,7 @@ import './tarjeta-personaje.css';
 
 
 
-const TarjetaPersonaje = ({imagen, alt, nombre, id}) => {
+const TarjetaPersonaje = ({imagen, alt, nombre, id, favorito}) => {
   const personajes = useAppSelector((state) => state.personajes);
   const favoritos = useAppSelector((state) => state.favoritos); 
     const dispatch = useAppDispatch();
@@ -25,6 +25,7 @@ const TarjetaPersonaje = ({imagen, alt, nombre, id}) => {
   const [isFAvorite, setIsFAvorite] = useState(false)
   
   useEffect(() => {
+    
     if (pathname === "/favoritos") {
       setIsFAvorite(true)    
     }
@@ -60,7 +61,7 @@ const TarjetaPersonaje = ({imagen, alt, nombre, id}) => {
         <img src={imagen} alt={alt}/>
         <div className="tarjeta-personaje-body">
             <span>{nombre}</span>
-            <BotonFavorito esFavorito={isFAvorite} onClick={(e)=>handleClickFavorito(id)}/>
+            <BotonFavorito esFavorito={favorito} onClick={(e)=>handleClickFavorito(id)}/>
         </div>
     </div>
 }

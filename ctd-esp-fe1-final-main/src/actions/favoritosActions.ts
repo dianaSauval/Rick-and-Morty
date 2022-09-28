@@ -13,6 +13,11 @@ export interface LoadFavoriteAction extends Action {
   cards: ICardFavorite[];
 }
 
+export interface LoadOneFavoriteAction extends Action {
+  type: "LOAD_ONE_FAVORITE";
+  card: ICardFavorite;
+}
+
 export interface DeleteFavoriteAction extends Action {
   type: "DELETE_FAVORITE";
   id: string;

@@ -27,6 +27,15 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   console.log("personajes: ", personajes);
   console.log("favoritos: ", favoritos);
 
+  const getFavorito = (id) =>{
+    const favorito = favoritos.find((fav)=>fav.id === id)
+    let isFavorite = false;
+    if(favorito){
+      isFavorite=favorito.favorite
+    }
+    return isFavorite;
+  }
+
   useEffect(() => {
     getPersonajes(paginacion.pages).then((personajes) => {
       dispatch(loadPersonaje(personajes));
@@ -45,11 +54,11 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
               imagen={personaje.card.image}
               alt={personaje.card.name}
               nombre={personaje.card.name}
+              favorito={personaje.favorite}
             />
             </>
           ))} 
     </div>
-
   return <div className="grilla-personajes">
 {personajes.map((personaje) => (
           <>
@@ -58,6 +67,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
             imagen={personaje.image}
             alt={personaje.name}
             nombre={personaje.name}
+            favorito={getFavorito(personaje.id)}
           />
           </>
         ))} 

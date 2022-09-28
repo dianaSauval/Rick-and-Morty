@@ -9,7 +9,7 @@ const initialState: FavoriteState = [];
 
 const FavoriteReducer: Reducer<
 FavoriteState,
-  AddFavoriteAction | LoadFavoriteAction | DeleteFavoriteAction
+  AddFavoriteAction | LoadFavoriteAction  | DeleteFavoriteAction
 > = (state = initialState, action): FavoriteState => {
   switch (action.type) {
     case "ADD_FAVORITE": {
