@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { ICardFavorite } from "../types"; 
-import { AddFavoriteAction, DeleteFavoriteAction, LoadFavoriteAction } from "../actions/favoritosActions";
+import { AddFavoriteAction, DeleteFavoriteAction, LoadFavoriteAction, DeleteAllFavoriteAction } from "../actions/favoritosActions";
 import { castDraft } from "immer";
 
 export type FavoriteState = ICardFavorite[];
@@ -9,7 +9,7 @@ const initialState: FavoriteState = [];
 
 const FavoriteReducer: Reducer<
 FavoriteState,
-  AddFavoriteAction | LoadFavoriteAction  | DeleteFavoriteAction
+  AddFavoriteAction | LoadFavoriteAction  | DeleteFavoriteAction | DeleteAllFavoriteAction
 > = (state = initialState, action): FavoriteState => {
   switch (action.type) {
     case "ADD_FAVORITE": {
@@ -23,6 +23,11 @@ FavoriteState,
     }
     case "DELETE_FAVORITE": {
       return state.filter((card) => card.id !== action.id);
+
+    }
+    case "DELETE_ALL_FAVORITE": {
+      state.forEach((card)=>card.favorite=false);
+      return initialState;
 
     }
     default:

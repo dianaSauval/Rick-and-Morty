@@ -16,6 +16,8 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
  *
  * @returns un JSX element
  */
+
+
  const GrillaPersonajes = () => {
   const favoritos = useAppSelector((state) => state.favoritos);
   const paginacion = useAppSelector((state) => state.paginacion);
@@ -27,7 +29,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   console.log("personajes: ", personajes);
   console.log("favoritos: ", favoritos);
 
-  const getFavorito = (id) =>{
+  const getFavorito = (id:string) =>{
     const favorito = favoritos.find((fav)=>fav.id === id)
     let isFavorite = false;
     if(favorito){
@@ -44,11 +46,15 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
 
   if(status === "cargando") return <div>Cargando personajes...</div>
   if(status === "completado_con_error") return <div>No se encontró ningún personaje...</div>
-  if (!personajes || personajes.length === 0) return <></> 
+  if (!personajes || personajes.length === 0 ) return <></> 
+   
 
-  if(pathname === "/favoritos") return <div className="grilla-personajes">
+  if(pathname === "/favoritos"){
+    if (!favoritos || favoritos.length === 0) return <></>
+
+  return <div className="grilla-personajes">
   {favoritos.map((personaje) => (
-            <>
+    <>
             <TarjetaPersonaje            
               id={personaje.card.id} 
               imagen={personaje.card.image}
@@ -59,8 +65,10 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
             </>
           ))} 
     </div>
+    }
+
   return <div className="grilla-personajes">
-{personajes.map((personaje) => (
+  {personajes.map((personaje) => (
           <>
           <TarjetaPersonaje                       
             id={personaje.id} 

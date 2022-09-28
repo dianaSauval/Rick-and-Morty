@@ -56,7 +56,7 @@ const buscarPersonajeError:ActionCreator<BuscarPersonajeErrorAction>= (error:str
   }
 }
 
-const MINIMUM_CHAR_TO_SEARCH = 3;
+//const MINIMUM_CHAR_TO_SEARCH = 3;
 
 
 

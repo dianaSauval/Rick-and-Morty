@@ -3,7 +3,7 @@ import GrillaPersonajes from "../componentes/personajes/grilla-personajes.compon
 import Paginacion from "../componentes/paginacion/paginacion.componente";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { buscarPersonajesThunk } from "../actions/personajesActions";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
  
 /**
  * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
@@ -23,7 +23,7 @@ const PaginaInicio = () => {
         setSearch("")
     }
 
-    const onChangeSearch = (e) =>{
+    const onChangeSearch = (e:ChangeEvent<HTMLInputElement>) =>{
         dispatch(buscarPersonajesThunk(paginacion.pages, e.target.value))
         setSearch(e.target.value)
     }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { buscarPersonajesThunk } from '../../actions/personajesActions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './filtros.css';
+import PropTypes from 'prop-types';
 
 const Filtros = ({search, setSearch}) => {
     const paginacion = useAppSelector((state) => state.paginacion);
@@ -16,3 +17,8 @@ const Filtros = ({search, setSearch}) => {
 }
 
 export default Filtros;
+
+Filtros.propTypes = {
+    search: PropTypes.string.isRequired,
+    setSearch: PropTypes.func.isRequired
+  };

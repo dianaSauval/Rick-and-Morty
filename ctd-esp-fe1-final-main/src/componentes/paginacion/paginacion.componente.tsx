@@ -3,6 +3,7 @@ import { nextPages, prevPages } from '../../actions/paginacionActions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './paginacion.css';
 
+
 /**
  * Componente que contiene los botones para paginar
  * 

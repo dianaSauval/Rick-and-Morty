@@ -13,14 +13,15 @@ export interface LoadFavoriteAction extends Action {
   cards: ICardFavorite[];
 }
 
-export interface LoadOneFavoriteAction extends Action {
-  type: "LOAD_ONE_FAVORITE";
-  card: ICardFavorite;
-}
-
 export interface DeleteFavoriteAction extends Action {
   type: "DELETE_FAVORITE";
   id: string;
+  favorite: boolean;
+}
+
+export interface DeleteAllFavoriteAction extends Action {
+  type: "DELETE_ALL_FAVORITE";
+  cards: ICardFavorite[];
   favorite: boolean;
 }
 
@@ -44,6 +45,14 @@ export const deleteFavorite: ActionCreator<DeleteFavoriteAction> = (id: string) 
   return {
     type: "DELETE_FAVORITE",
     id,
+    favorite: false,
+  };
+};
+
+export const deleteAllFavorite: ActionCreator<DeleteAllFavoriteAction> = () => {
+  return {
+    type: "DELETE_ALL_FAVORITE",
+    cards: [],
     favorite: false,
   };
 };
