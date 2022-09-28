@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { buscarPersonajesThunk } from '../../actions/personajesActions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './filtros.css';
-import PropTypes from 'prop-types';
+import { FC , ChangeEventHandler} from "react";
 
-const Filtros = ({search, setSearch}) => {
+const Filtros : FC<{search: string, setSearch: ChangeEventHandler<HTMLInputElement> | undefined}> = ({search, setSearch}) => {
     const paginacion = useAppSelector((state) => state.paginacion);
     const dispatch = useAppDispatch();
 
@@ -18,7 +17,3 @@ const Filtros = ({search, setSearch}) => {
 
 export default Filtros;
 
-Filtros.propTypes = {
-    search: PropTypes.string.isRequired,
-    setSearch: PropTypes.func.isRequired
-  };
