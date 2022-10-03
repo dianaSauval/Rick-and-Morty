@@ -1,44 +1,43 @@
-import { Reducer } from "redux"; 
-import { PaginacionAction } from "../actions/paginacionActions"; 
+import { Reducer } from "redux";
+import { PaginacionAction } from "../actions/paginacionActions";
 
 export type PaginacionState = {
-  count:number
-    pages: number;
-    next:number;
-    prev:number | null;
-}
-
-const initialState: PaginacionState = {
-    count: 9,
-    pages: 1,
-    next:2,
-    prev:null,
+  count: number;
+  pages: number;
+  next: number;
+  prev: number | null;
 };
 
-const PaginacionReducer: Reducer<
-PaginacionState, 
-PaginacionAction 
-> = (state = initialState, action): PaginacionState => {
+const initialState: PaginacionState = {
+  count: 9,
+  pages: 1,
+  next: 2,
+  prev: null,
+};
+
+const PaginacionReducer: Reducer<PaginacionState, PaginacionAction> = (
+  state = initialState,
+  action
+): PaginacionState => {
   switch (action.type) {
-    case "NEXT_PAGES": 
-    return {
-      ...state,
-      pages:action.pages,
-      next:action.pages +1
-  }
-    case "STATE_PAGES": 
+    case "NEXT_PAGES":
       return {
         ...state,
-        pages:action.pages,
-        count:action.count
-    }
-    case "PREV_PAGES": 
-    return {
+        pages: action.pages,
+        next: action.pages + 1,
+      };
+    case "STATE_PAGES":
+      return {
         ...state,
-        pages:action.pages,
-        prev:action.pages - 1,
-        
-  }
+        pages: action.pages,
+        count: action.count,
+      };
+    case "PREV_PAGES":
+      return {
+        ...state,
+        pages: action.pages,
+        prev: action.pages - 1,
+      };
     default:
       return state;
   }

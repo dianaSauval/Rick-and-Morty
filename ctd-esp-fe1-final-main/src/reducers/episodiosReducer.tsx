@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
-import { Episodio } from "../types"; 
-import { EpisodioAction } from "../actions/episodiosActions"; 
+import { Episodio } from "../types";
+import { EpisodioAction } from "../actions/episodiosActions";
 
 interface EpisodiosState {
-  status: "cargando" | "completado" |"completado_con_error";
+  status: "cargando" | "completado" | "completado_con_error";
   episodios: Episodio | Episodio[];
   error: string;
 }
@@ -14,10 +14,10 @@ const initialState: EpisodiosState = {
   error: "",
 };
 
-const EpisodioReducer: Reducer<
-EpisodiosState, 
-EpisodioAction 
-> = (state = initialState, action): EpisodiosState => {
+const EpisodioReducer: Reducer<EpisodiosState, EpisodioAction> = (
+  state = initialState,
+  action
+): EpisodiosState => {
   switch (action.type) {
     case "GET_EPISODES":
       return {
@@ -36,7 +36,7 @@ EpisodioAction
       return {
         ...state,
         status: "completado_con_error",
-        error: action.error
+        error: action.error,
       };
     default:
       return { ...state };

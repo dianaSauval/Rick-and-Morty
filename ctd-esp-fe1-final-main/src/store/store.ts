@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   favoritos: FavoriteReducer,
   personajes: PersonajeReducer,
   paginacion: PaginacionReducer,
-  episodios: EpisodioReducer
+  episodios: EpisodioReducer,
 });
 
 const store = configureStore({
@@ -16,8 +16,7 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
 });
 
-store.subscribe(()=> console.log(store));
-
+store.subscribe(() => console.log(store));
 
 export default store;
 

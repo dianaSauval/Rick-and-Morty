@@ -41,9 +41,13 @@ const getEpisodiosError: ActionCreator<getEpisodiosErrorAccion> = (
   };
 };
 
-export type EpisodioAction = getEpisodiosAccion | getEpisodiosSuccessAccion | getEpisodiosErrorAccion;
+export type EpisodioAction =
+  | getEpisodiosAccion
+  | getEpisodiosSuccessAccion
+  | getEpisodiosErrorAccion;
 
-interface BuscarEpisodioThunkAction extends ThunkAction<void, RootState, unknown, EpisodioAction>{};
+interface BuscarEpisodioThunkAction
+  extends ThunkAction<void, RootState, unknown, EpisodioAction> {}
 
 export const getEpisodiosThunk = (
   arrayEpisodioID: (string | undefined)[]
@@ -52,7 +56,7 @@ export const getEpisodiosThunk = (
     try {
       const response = await fetchEpisodios(arrayEpisodioID);
       console.log("response: ", response);
-      
+
       if (response !== undefined) {
         dispatch(getEpisodiosSuccess(response));
       }
