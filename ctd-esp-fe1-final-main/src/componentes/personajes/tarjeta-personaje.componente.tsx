@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { Personaje } from '../../types';
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
@@ -19,11 +21,12 @@ import { FC } from "react";
  * @returns un JSX element 
  */
 
-const TarjetaPersonaje: FC<{imagen: string, alt: string, nombre: string, id: string, favorito: boolean}> = ({imagen, alt, nombre, id, favorito}) => {
+ const TarjetaPersonaje: FC <{ personaje: Personaje, favorito: boolean }> = ({ personaje, favorito }) => {
   const personajes = useAppSelector((state) => state.personajes);
   const favoritos = useAppSelector((state) => state.favoritos); 
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
+    let navigate = useNavigate();
   
   const handleClickFavorito = (id:string) =>{
     const favorito = favoritos.find((fav)=>fav.id === id)
@@ -35,11 +38,17 @@ const TarjetaPersonaje: FC<{imagen: string, alt: string, nombre: string, id: str
         dispatch(deleteFavorite(id))
       }      
   } 
+
+  const Detalle = (personaje : Personaje) => {
+    navigate(`/detalle/${personaje.id}`, { state: { personaje: personaje } });
+  };
+
+
     return <div className="tarjeta-personaje">
-        <img src={imagen} alt={alt}/>
+        <img src={personaje.image} alt={personaje.name} onClick={(e)=>Detalle(personaje)}/>
         <div className="tarjeta-personaje-body">
-            <span>{nombre}</span>
-            <BotonFavorito esFavorito={favorito} onClick={(e)=>handleClickFavorito(id)}/>
+            <span>{personaje.name}</span>
+            <BotonFavorito esFavorito={favorito} onClick={(e)=>handleClickFavorito(personaje.id)}/>
         </div>
     </div>
 }

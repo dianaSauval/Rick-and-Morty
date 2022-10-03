@@ -21,13 +21,18 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
  const GrillaPersonajes = () => {
   const favoritos = useAppSelector((state) => state.favoritos);
   const paginacion = useAppSelector((state) => state.paginacion);
+  const episodios = useAppSelector((state) => state.episodios);
   const {personajes, status} = useAppSelector(state => state.personajes);
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  let estrellaFav = false
 
-  console.log("personajes: ", personajes);
-  console.log("favoritos: ", favoritos);
+  console.log("episodios: ", episodios);
+
+  const getEpisodesByCharacter = (id:string) =>{
+    const personaje = personajes.find((per)=>per.id === id)
+
+  }
+  
 
   const getFavorito = (id:string) =>{
     const favorito = favoritos.find((fav)=>fav.id === id)
@@ -56,10 +61,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   {favoritos.map((personaje) => (
     <>
             <TarjetaPersonaje            
-              id={personaje.card.id} 
-              imagen={personaje.card.image}
-              alt={personaje.card.name}
-              nombre={personaje.card.name}
+              personaje={personaje.card}
               favorito={personaje.favorite}
             />
             </>
@@ -71,10 +73,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
   {personajes.map((personaje) => (
           <>
           <TarjetaPersonaje                       
-            id={personaje.id} 
-            imagen={personaje.image}
-            alt={personaje.name}
-            nombre={personaje.name}
+            personaje={personaje}
             favorito={getFavorito(personaje.id)}
           />
           </>
