@@ -21,7 +21,6 @@ export interface DeleteFavoriteAction extends Action {
 
 export interface DeleteAllFavoriteAction extends Action {
   type: "DELETE_ALL_FAVORITE";
-  cards: ICardFavorite[];
   favorite: boolean;
 }
 
@@ -59,7 +58,6 @@ export const deleteFavorite: ActionCreator<DeleteFavoriteAction> = (
 export const deleteAllFavorite: ActionCreator<DeleteAllFavoriteAction> = () => {
   return {
     type: "DELETE_ALL_FAVORITE",
-    cards: [],
     favorite: false,
   };
 };

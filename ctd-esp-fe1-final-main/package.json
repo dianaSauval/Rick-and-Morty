@@ -1,5 +1,6 @@
 {
   "name": "ctd-esp-fe1-final",
+  "homepage":"https://dianaauval.github.io/Proyecto-de-Rick-y-Morty",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,13 +20,16 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.24"
+    "@types/react-redux": "^7.1.24",
+    "gh-pages": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy":"gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
