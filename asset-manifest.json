@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Rick-and-Morty.github.io/static/css/main.b8fc0a7b.css",
-    "main.js": "/Rick-and-Morty.github.io/static/js/main.7e1aedcd.js",
-    "static/js/787.06cb7646.chunk.js": "/Rick-and-Morty.github.io/static/js/787.06cb7646.chunk.js",
-    "index.html": "/Rick-and-Morty.github.io/index.html",
-    "main.b8fc0a7b.css.map": "/Rick-and-Morty.github.io/static/css/main.b8fc0a7b.css.map",
-    "main.7e1aedcd.js.map": "/Rick-and-Morty.github.io/static/js/main.7e1aedcd.js.map",
-    "787.06cb7646.chunk.js.map": "/Rick-and-Morty.github.io/static/js/787.06cb7646.chunk.js.map"
+    "main.css": "/Rick-and-Morty/static/css/main.b8fc0a7b.css",
+    "main.js": "/Rick-and-Morty/static/js/main.d36d331e.js",
+    "static/js/787.06cb7646.chunk.js": "/Rick-and-Morty/static/js/787.06cb7646.chunk.js",
+    "index.html": "/Rick-and-Morty/index.html",
+    "main.b8fc0a7b.css.map": "/Rick-and-Morty/static/css/main.b8fc0a7b.css.map",
+    "main.d36d331e.js.map": "/Rick-and-Morty/static/js/main.d36d331e.js.map",
+    "787.06cb7646.chunk.js.map": "/Rick-and-Morty/static/js/787.06cb7646.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b8fc0a7b.css",
-    "static/js/main.7e1aedcd.js"
+    "static/js/main.d36d331e.js"
   ]
 }
