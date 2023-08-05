@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import PaginaInicio from "./paginas/Inicio.pagina";
 import PaginaFavoritos from "./paginas/Favoritos.pagina";
@@ -9,7 +9,8 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 function App() {
-  return (
+  return (<>
+  <BrowserRouter>
     <Provider store={store}>
       <div className="App">
         <Encabezado />
@@ -20,6 +21,8 @@ function App() {
         </Routes>
       </div>
     </Provider>
+    </BrowserRouter>
+    </>
   );
 }
 
