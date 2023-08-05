@@ -30,6 +30,7 @@ const GrillaPersonajes = () => {
   const { pathname } = useLocation();
 
   console.log("episodios: ", episodios);
+  console.log("personajes: ", personajes);
 
   const getEpisodesByCharacter = (id: string) => {
     const personaje = personajes.find((per) => per.id === id);

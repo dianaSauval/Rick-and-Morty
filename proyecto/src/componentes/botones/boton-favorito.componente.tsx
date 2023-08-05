@@ -1,5 +1,7 @@
 import "./boton-favorito.css";
 import { FC, MouseEventHandler } from "react";
+import starFill from "../../imagenes/star-filled.png"
+import star from "../../imagenes/star.png"
 
 /**
  * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
@@ -14,7 +16,7 @@ const BotonFavorito: FC<{
   esFavorito: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
 }> = ({ esFavorito, onClick }) => {
-  const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png";
+  const src = esFavorito ? starFill : star;
 
   return (
     <div className="boton-favorito" onClick={onClick}>
